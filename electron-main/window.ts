@@ -83,7 +83,7 @@ export class Window {
       width: wh[0],
       height: wh[1],
       backgroundColor: "#f7f8fc",
-      autoHideMenuBar: true,
+      autoHideMenuBar: false,
       resizable: true,
       minimizable: true,
       maximizable: true,
