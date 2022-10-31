@@ -2,6 +2,7 @@
   "name": "easy-name-vue",
   "private": true,
   "version": "0.0.0",
+  "main": "dist/electron/index.js",
   "scripts": {
     "dev": "vite",
     "build:orign": "vue-tsc && vite build",
@@ -29,10 +30,10 @@
     "vue-tsc": "^1.0.9"
   },
   "build": {
-    "appId": "com.smallpig.desktop",
-    "productName": "smallpig",
+    "appId": "com.easyrename.desktop",
+    "productName": "EasyRename",
     "asar": true,
-    "copyright": "Copyright © 2022 smallpig",
+    "copyright": "Copyright © 2022 EasyRename",
     "directories": {
       "output": "release/${version}"
     },
