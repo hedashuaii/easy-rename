@@ -108,9 +108,7 @@ export class Window {
 
   // 创建窗口
   createWindows(options: Partial<IWindowsCfg>) {
-    console.log("------------开始创建窗口...");
     let args = Object.assign({}, windowsCfg, options);
-    console.log("args", args);
     // 判断窗口是否存在
     for (let i in this.group) {
       if (
@@ -118,21 +116,17 @@ export class Window {
         this.group[i].route === args.route &&
         !this.group[i].isMultiWindow
       ) {
-        console.log("窗口已经存在了");
         this.getWindow(Number(i)).focus();
         return;
       }
     }
     // 创建electron窗口的配置参数
     let opt = this.winOpts([args.width || 390, args.height || 590]);
-    console.log("创建窗口的配置参数", opt);
 
     // 判断是否有父窗口
     if (args.parentId) {
-      console.log("parentId：" + args.parentId);
       opt.parent = this.getWindow(args.parentId) as BrowserWindow; // 获取主窗口
     } else if (this.main) {
-      console.log(666);
     }
 
     opt.modal = args.modal;
@@ -141,14 +135,11 @@ export class Window {
     if (args.minWidth) opt.minWidth = args.minWidth;
     if (args.minHeight) opt.minHeight = args.minHeight;
 
-    console.log("opt", opt);
     let win = new BrowserWindow(opt);
-    console.log("窗口id：" + win);
     this.group[win.id] = {
       route: args.route,
       isMultiWindow: args.isMultiWindow,
     };
-    console.log("this.group", this.group);
     // 是否最大化
     if (args.maximize && args.resizable) {
       win.maximize();
@@ -156,7 +147,6 @@ export class Window {
     // 是否主窗口
     if (args.isMainWin) {
       if (this.main) {
-        console.log("主窗口存在");
         delete this.group[this.main.id];
         this.main.close();
       }
@@ -176,7 +166,6 @@ export class Window {
         ? `http://${process.env["VITE_DEV_SERVER_HOST"]}:${process.env["VITE_DEV_SERVER_PORT"]}${args.route}?winId=${args.id}`
         : `http://${process.env["VITE_DEV_SERVER_HOST"]}:${process.env["VITE_DEV_SERVER_PORT"]}?winId=${args.id}`;
     }
-    console.log("新窗口地址:", winURL);
     win.loadURL(winURL);
 
     win.once("ready-to-show", () => {
@@ -186,12 +175,10 @@ export class Window {
 
   // 创建托盘
   createTray() {
-    console.log("创建托盘");
     const contextMenu = Menu.buildFromTemplate([
       {
         label: "注销",
         click: () => {
-          console.log("注销");
           // 主进程发送消息，通知渲染进程注销当前登录用户 --todo
         },
       },
@@ -259,7 +246,6 @@ export class Window {
 
     // 最小化
     ipcMain.on("mini", (event: Event, winId) => {
-      console.log("最小化窗口id", winId);
       if (winId) {
         this.getWindow(Number(winId)).minimize();
       } else {
