@@ -9,7 +9,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@element-plus/icons-vue": "^2.0.10",
+    "@types/filesize": "^5.0.0",
     "element-plus": "^2.2.19",
+    "filesize": "^10.0.5",
     "vue": "^3.2.41"
   },
   "devDependencies": {
@@ -19,6 +22,7 @@
     "electron-builder": "^23.0.3",
     "electron-devtools-installer": "^3.2.0",
     "rimraf": "^3.0.2",
+    "sass": "^1.55.0",
     "typescript": "^4.6.4",
     "vite": "^3.2.0",
     "vite-plugin-electron": "^0.4.5",
