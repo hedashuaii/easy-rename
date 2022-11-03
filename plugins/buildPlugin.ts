@@ -1,17 +1,11 @@
 import path from "path";
 import fs from "fs";
+import { buildElectronFiles } from "./utils";
 
 class BuildObj {
   // 编译主进程代码
   buildMain() {
-    require("esbuild").buildSync({
-      entryPoints: ["./src/main/mainEntry.ts"],
-      bundle: true,
-      platform: "node",
-      minify: true,
-      outfile: "./dist/mainEntry.js",
-      external: ["electron"],
-    });
+    buildElectronFiles(true)
   }
 
   // 为生产环境准备package.json

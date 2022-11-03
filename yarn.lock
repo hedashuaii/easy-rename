@@ -41,6 +41,11 @@
     global-agent "^3.0.0"
     global-tunnel-ng "^2.7.1"
 
+"@electron/remote@^2.0.8":
+  version "2.0.8"
+  resolved "https://registry.npmjs.org/@electron/remote/-/remote-2.0.8.tgz#85ff321f0490222993207106e2f720273bb1a5c3"
+  integrity sha512-P10v3+iFCIvEPeYzTWWGwwHmqWnjoh8RYnbtZAb3RlQefy4guagzIwcWtfftABIfm6JJTNQf4WPSKWZOpLmHXw==
+
 "@electron/universal@1.2.1":
   version "1.2.1"
   resolved "https://registry.npmmirror.com/@electron/universal/-/universal-1.2.1.tgz#3c2c4ff37063a4e9ab1e6ff57db0bc619bc82339"
@@ -54,9 +59,9 @@
     minimatch "^3.0.4"
     plist "^3.0.4"
 
-"@element-plus/icons-vue@^2.0.6":
+"@element-plus/icons-vue@^2.0.10", "@element-plus/icons-vue@^2.0.6":
   version "2.0.10"
-  resolved "https://registry.npmmirror.com/@element-plus/icons-vue/-/icons-vue-2.0.10.tgz#60808d613c3dbdad025577022be8a972739ade21"
+  resolved "https://registry.npmjs.org/@element-plus/icons-vue/-/icons-vue-2.0.10.tgz#60808d613c3dbdad025577022be8a972739ade21"
   integrity sha512-ygEZ1mwPjcPo/OulhzLE7mtDrQBWI8vZzEWSNB2W/RNCRjoQGwbaK4N8lV4rid7Ts4qvySU3njMN7YCiSlSaTQ==
 
 "@esbuild/android-arm@0.15.13":
@@ -2186,9 +2191,9 @@ verror@^1.10.0:
     extsprintf "^1.2.0"
 
 vite-plugin-optimizer@^1.4.2:
-  version "1.4.0"
-  resolved "https://registry.npmmirror.com/vite-plugin-optimizer/-/vite-plugin-optimizer-1.4.0.tgz#60545e0c4e8d3790e3d3486db97ad85857ea0cd3"
-  integrity sha512-hTY1pdtSmN/BNOnjvmcmK+2fW1Ac9wD0gFBy67i5IsKwhr1fS1/GGmssdCaik2SpnplHjoDrmCgVsgBv20HzrA==
+  version "1.4.2"
+  resolved "https://registry.npmjs.org/vite-plugin-optimizer/-/vite-plugin-optimizer-1.4.2.tgz#45e2d3cc9d1c1c254d115648741fdfe0a470d41f"
+  integrity sha512-UNQy+J31b+DeEc2NCxV+WIkwyYPWGPjYsnXO4+gM26CKY5KJ47JeRjchR11F3qfR8MWDX1+425LZfkUyXOfGFA==
 
 vite@^3.2.0:
   version "3.2.2"

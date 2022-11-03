@@ -1,4 +1,5 @@
 import { ViteDevServer } from "vite";
+import { buildElectronFiles } from "./utils";
 
 /**
  * Vite Plugin
@@ -10,13 +11,7 @@ export const devPlugin = () => {
   return {
     name: "dev-plugin",
     configureServer(server: ViteDevServer) {
-      require("esbuild").buildSync({
-        entryPoints: ["./src/main/mainEntry.ts"],
-        bundle: true,
-        platform: "node",
-        outfile: "./dist/mainEntry.js",
-        external: ["electron"],
-      });
+      buildElectronFiles(false),
 
       server.httpServer?.once("listening", () => {
         const { spawn } = require("child_process");

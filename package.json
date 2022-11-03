@@ -9,6 +9,7 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "@element-plus/icons-vue": "^2.0.10",
     "@types/filesize": "^5.0.0",
     "@vitejs/plugin-vue": "^3.2.0",
     "electron": "^21.2.1",
