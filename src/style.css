@@ -3,6 +3,19 @@
   padding: 0;
 }
 
-ul, ol {
-  list-style: none;
+html {
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  padding: 2px;
+  box-sizing: border-box;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+#app {
+  height: 100%;
+  overflow: hidden;
 }
