@@ -1,6 +1,6 @@
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, ipcMain, dialog } from "electron";
 import { CustomScheme } from "./CustomScheme";
-import * as path from 'path'
+import * as path from "path";
 
 // ELECTRON_DISABLE_SECURITY_WARNINGS 用于设置渲染进程开发者调试工具的警告，这里设置为 true 就不会再显示任何警告了。
 process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = "true";
@@ -19,7 +19,7 @@ app.whenReady().then(() => {
       webviewTag: true,
       spellcheck: false,
       disableHtmlFullscreenWindowResize: true,
-      preload: path.join(__dirname, 'preload.js'),
+      preload: path.join(__dirname, "preload.js"),
     },
   };
 
@@ -34,4 +34,16 @@ app.whenReady().then(() => {
     CustomScheme.registerScheme();
     mainWindow.loadURL(`app://index.html`);
   }
+
+  ipcMain.handle("custom-event", async (_, args) => {
+    const { canceled, filePaths } = await dialog.showOpenDialog({
+      title: "选择文件",
+      properties: ["openDirectory", "openFile", "multiSelections", "showHiddenFiles"],
+    });
+    if (canceled) {
+      return;
+    } else {
+      return filePaths;
+    }
+  });
 });

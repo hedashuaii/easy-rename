@@ -1,18 +1,13 @@
 <script setup lang="ts">
-// import * as remote from "electron"
-
-// const { dialog } = remote
-
+import { ipcRenderer } from "electron";
 /** 添加文件 */
 const handleAddFile = () => {
   console.log('handleAddFile')
 
-  // dialog.showOpenDialog({ title: '选择图片', filters: [{ name: 'image', extensions: ['jpg', 'png'] }] })
-  //           .then(res => {
-  //             console.log(res)
-
-  //           })
-  //           .catch(console.log)
+  ipcRenderer.invoke('custom-event', { eventName: 'open-files', })
+    .then(res => {
+      console.log('handleAddFile res', res)
+    })
 }
 </script>
 

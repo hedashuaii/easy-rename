@@ -20,5 +20,6 @@ export const buildElectronFiles = (minify: boolean) => {
     platform: "node",
     minify,
     outfile: "./dist/preload.js",
+    external: ["electron"],
   });
 };
