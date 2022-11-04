@@ -1,6 +1,7 @@
-import { app, BrowserWindow, ipcMain, dialog } from "electron";
-import { CustomScheme } from "./CustomScheme";
+import { app, BrowserWindow, ipcMain } from "electron";
+import { CustomScheme } from "./utils/CustomScheme";
 import * as path from "path";
+import events from "./events";
 
 // ELECTRON_DISABLE_SECURITY_WARNINGS 用于设置渲染进程开发者调试工具的警告，这里设置为 true 就不会再显示任何警告了。
 process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = "true";
@@ -34,16 +35,9 @@ app.whenReady().then(() => {
     CustomScheme.registerScheme();
     mainWindow.loadURL(`app://index.html`);
   }
+  
+  // @ts-ignore
+  Object.keys(events).forEach((item: any) => ipcMain.handle(item, events[item]))
 
-  ipcMain.handle("custom-event", async (_, args) => {
-    const { canceled, filePaths } = await dialog.showOpenDialog({
-      title: "选择文件",
-      properties: ["openDirectory", "openFile", "multiSelections", "showHiddenFiles"],
-    });
-    if (canceled) {
-      return;
-    } else {
-      return filePaths;
-    }
-  });
+  
 });

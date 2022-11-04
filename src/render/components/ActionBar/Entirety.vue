@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import { reactive } from "vue";
+import { reactive, watch, watchEffect } from "vue";
+import useOptionsStore from "../../store/useOptionsStore";
+
+const optionsStore = useOptionsStore();
 
 const fileNameForm = reactive({
   /** 文件名操作类型 */
@@ -12,9 +15,11 @@ const fileNameForm = reactive({
   extensionNameReplaceText: "",
 });
 
-const onSubmit = () => {
-  console.log("submit!");
-};
+watch(
+  () => fileNameForm,
+  (newValue) => optionsStore.setFieldsValue(newValue),
+  { deep: true }
+);
 </script>
 
 <template>

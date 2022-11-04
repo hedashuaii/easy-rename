@@ -1,42 +1,22 @@
 <script setup lang="ts">
 import dayjs from "dayjs";
-import { reactive } from "vue";
 import { filesize } from "filesize";
-import { IFileListItem, EFileType } from "../types";
-import { getFileType, getFileChannelPath, getFileExtension } from "../utils";
+import { IFileListItem, EFileType } from "../../types";
+import useFileListStore from "../store/useFileListStore";
 
-const tableData = reactive<IFileListItem[]>([]);
+const fileListStore = useFileListStore();
 
 const handleDrop = (e: DragEvent) => {
-  console.log(e.dataTransfer?.files);
   e.preventDefault();
   e.stopPropagation();
 
-  const files = Array.from(e.dataTransfer?.files ?? []).map((item) => {
+  const files: IFileListItem[] = Array.from(e.dataTransfer?.files ?? []).map((item) => {
     const { lastModified, name, size, webkitRelativePath, type, path } = item;
-
-    const channelPath = getFileChannelPath(item);
-
-    const extension = getFileExtension(item);
-
-    // TODO: 后期考虑用 node 的 fs.state 来判断是文件还文件夹
-    const fileType = getFileType(item);
-
-    // 组装新数据
-    return {
-      lastModified,
-      name,
-      size,
-      webkitRelativePath,
-      type,
-      path,
-      channelPath,
-      extension,
-      fileType,
-    } as any;
+    return { lastModified, name, size, webkitRelativePath, type, path };
   });
 
-  files.forEach((item) => tableData.push(item));
+  console.log('files', files)
+  fileListStore.add(files);
 };
 </script>
 
@@ -50,13 +30,19 @@ const handleDrop = (e: DragEvent) => {
       border
       stripe
       size="small"
-      :data="tableData"
+      :data="fileListStore.filesList"
       class="easy-rename-file-list-table"
     >
       <el-table-column type="selection" align="center" />
       <el-table-column type="index" label="序号" width="80" align="center" />
       <el-table-column prop="name" label="文件名" />
-      <el-table-column prop="preview" label="预览" />
+      <el-table-column prop="preview" label="预览">
+        <template #default="scope">
+          <span>{{
+            (scope.row.previewName ?? '') + (scope.row.previewExtension ?? '')
+          }}</span>
+        </template>
+      </el-table-column>
       <el-table-column prop="extension" label="扩展名" />
       <el-table-column prop="lastModifiedDate" label="修改日期">
         <template #default="scope">

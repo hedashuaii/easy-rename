@@ -27,7 +27,10 @@ export interface IFileItem {
 
 export interface IFileListItem extends IFileItem {
   /** 预览文件名 */
-  preview?: string;
+  previewName?: string;
+
+  /** 预览扩展名 */
+  previewExtension?: string;
 
   /** 修改结果 */
   result?: string;

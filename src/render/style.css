@@ -9,7 +9,7 @@ html {
 
 body {
   height: 100%;
-  padding: 2px;
+  padding: 6px;
   box-sizing: border-box;
   background-color: #fff;
   overflow: hidden;
@@ -18,4 +18,5 @@ body {
 #app {
   height: 100%;
   overflow: hidden;
+  user-select: none;
 }

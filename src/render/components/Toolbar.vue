@@ -1,14 +1,20 @@
 <script setup lang="ts">
 import { ipcRenderer } from "electron";
+import useFileListStore from "../store/useFileListStore";
+
+const fileListStore = useFileListStore();
+
 /** 添加文件 */
 const handleAddFile = () => {
-  console.log('handleAddFile')
+  ipcRenderer.invoke("open-file").then((res) => {
+    fileListStore.add(res);
+  });
+};
 
-  ipcRenderer.invoke('custom-event', { eventName: 'open-files', })
-    .then(res => {
-      console.log('handleAddFile res', res)
-    })
-}
+/** 清空文件列表 */
+const handleClearFile = () => {
+  fileListStore.clear();
+};
 </script>
 
 <template>
@@ -21,17 +27,18 @@ const handleAddFile = () => {
       >
         <el-icon><FolderOpened /></el-icon>
       </div>
-      <div
-        title="预览 Ctrl+F"
-        class="easy-rename-toolbas-item"
-      >
+      <div title="预览 Ctrl+F" class="easy-rename-toolbas-item">
         <el-icon><Search /></el-icon>
       </div>
+      <div title="应用 Ctrl+E" class="easy-rename-toolbas-item">
+        <el-icon><Finished /></el-icon>
+      </div>
       <div
-        title="应用 Ctrl+E"
+        @click="handleClearFile"
+        title="清空文件列表"
         class="easy-rename-toolbas-item"
       >
-        <el-icon><Finished /></el-icon>
+        <el-icon><Delete /></el-icon>
       </div>
     </el-space>
   </div>
@@ -44,7 +51,7 @@ const handleAddFile = () => {
 
     &:hover {
       cursor: pointer;
-      background-color: rgba(0, 0, 0, .1);
+      background-color: rgba(0, 0, 0, 0.1);
     }
   }
 }
