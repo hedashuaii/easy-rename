@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
+    "devcmd": "chcp 65001 && vite",
     "build": "vue-tsc && vite build",
     "preview": "vite preview"
   },

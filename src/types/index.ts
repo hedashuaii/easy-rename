@@ -33,8 +33,8 @@ export interface IFileListItem extends IFileItem {
   previewExtension?: string;
 
   /** 修改结果 */
-  result?: string;
-
+  result?: boolean;
+  
   /** 文件扩展名 */
   extension?: string;
 

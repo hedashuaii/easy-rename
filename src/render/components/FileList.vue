@@ -10,12 +10,14 @@ const handleDrop = (e: DragEvent) => {
   e.preventDefault();
   e.stopPropagation();
 
-  const files: IFileListItem[] = Array.from(e.dataTransfer?.files ?? []).map((item) => {
-    const { lastModified, name, size, webkitRelativePath, type, path } = item;
-    return { lastModified, name, size, webkitRelativePath, type, path };
-  });
+  const files: IFileListItem[] = Array.from(e.dataTransfer?.files ?? []).map(
+    (item) => {
+      const { lastModified, name, size, webkitRelativePath, type, path } = item;
+      return { lastModified, name, size, webkitRelativePath, type, path };
+    }
+  );
 
-  console.log('files', files)
+  console.log("files", files);
   fileListStore.add(files);
 };
 </script>
@@ -39,7 +41,7 @@ const handleDrop = (e: DragEvent) => {
       <el-table-column prop="preview" label="预览">
         <template #default="scope">
           <span>{{
-            (scope.row.previewName ?? '') + (scope.row.previewExtension ?? '')
+            (scope.row.previewName ?? "") + (scope.row.previewExtension ?? "")
           }}</span>
         </template>
       </el-table-column>
@@ -68,7 +70,12 @@ const handleDrop = (e: DragEvent) => {
         </template>
       </el-table-column>
       <el-table-column prop="fileType" label="识别类型" />
-      <el-table-column prop="result" label="结果" />
+      <el-table-column prop="result" label="结果">
+        <template #default="scope">
+          <el-tag v-if="scope.row.result === true" type="success">成功</el-tag>
+          <el-tag v-else-if="scope.row.result === false" type="danger">失败</el-tag>
+        </template>
+      </el-table-column>
     </el-table>
   </div>
 </template>
