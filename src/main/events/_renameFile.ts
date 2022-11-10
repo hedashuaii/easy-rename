@@ -18,4 +18,7 @@ const handleRenameFile: IHandle = async (e, files: IFileListItem[]) => {
   return Promise.allSettled(filesRenamePromiseMap);
 };
 
-export default handleRenameFile;
+export default {
+  type: 'handle',
+  callback: handleRenameFile
+};

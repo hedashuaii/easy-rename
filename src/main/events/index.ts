@@ -1,7 +1,9 @@
 import selectFile from "./_selectFile";
 import renameFile from "./_renameFile";
+import listContextMenu from "./_listContextMenu";
 
 export default {
-  "select-file": selectFile,
+  "selectFile": selectFile,
   "renameFile": renameFile,
+  "listContextMenu": listContextMenu,
 };

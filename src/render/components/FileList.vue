@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import dayjs from "dayjs";
+import { ipcRenderer } from "electron";
 import { filesize } from "filesize";
+import { ref } from "vue";
 import { IFileListItem, EFileType } from "../../types";
 import useFileListStore from "../store/useFileListStore";
 
 const fileListStore = useFileListStore();
 
+// 
 const handleDrop = (e: DragEvent) => {
   e.preventDefault();
   e.stopPropagation();
@@ -20,12 +23,24 @@ const handleDrop = (e: DragEvent) => {
   console.log("files", files);
   fileListStore.add(files);
 };
+
+// 列表区域的右键菜单
+const handleContextmenu = (e: MouseEvent) => {
+  e.preventDefault()
+  // 触发主进程事件，显示右键菜单
+  ipcRenderer.send('listContextMenu')
+}
+
+const handleSelectionChange = (val: IFileListItem[]) => {
+  fileListStore.setSelectionFiles(val)
+}
 </script>
 
 <template>
   <div
     @drop="handleDrop"
     @dragover="(e) => e.preventDefault()"
+    @contextmenu="handleContextmenu"
     class="easy-rename-file-list"
   >
     <el-table
@@ -34,6 +49,7 @@ const handleDrop = (e: DragEvent) => {
       size="small"
       :data="fileListStore.filesList"
       class="easy-rename-file-list-table"
+      @selection-change="handleSelectionChange"
     >
       <el-table-column type="selection" align="center" />
       <el-table-column type="index" label="序号" width="80" align="center" />

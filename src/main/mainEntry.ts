@@ -37,7 +37,13 @@ app.whenReady().then(() => {
   }
   
   // @ts-ignore
-  Object.keys(events).forEach((item: any) => ipcMain.handle(item, events[item]))
+  Object.keys(events).forEach((key: string) => {
+    // @ts-ignore
+    const event = events[key]
+    // console.log(key, event.type, event.callback)
+    // @ts-ignore
+    ipcMain[event.type](key, event.callback)
+  })
 
   
 });

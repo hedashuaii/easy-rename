@@ -4,7 +4,10 @@ import { IFileListItem } from "../../types";
 import { getFileExtension, getFileChannelPath, getFileType } from "../../utils";
 
 const useFileListStore = defineStore("fileList", () => {
+  // 文件列表
   const filesList: Ref<IFileListItem[]> = ref([]);
+  // 表格中选中的文件的路径
+  const selectionFiles = ref<IFileListItem[]>([])
 
   /** 初始化文件信息 */
   const initFileInfo = (file: IFileListItem) => {
@@ -34,7 +37,11 @@ const useFileListStore = defineStore("fileList", () => {
     filesList.value = []
   }
 
-  return { filesList, add, replace, clear };
+  const setSelectionFiles = (list: IFileListItem[]) => {
+    selectionFiles.value = list
+  }
+
+  return { filesList, selectionFiles, add, replace, clear, setSelectionFiles };
 });
 
 export default useFileListStore;

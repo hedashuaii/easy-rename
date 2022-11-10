@@ -28,4 +28,7 @@ const handleSelectFile: IHandle = async (e, ...args) => {
     }
   };
 
-  export default handleSelectFile
+  export default {
+    type: 'handle',
+    callback: handleSelectFile
+  }
