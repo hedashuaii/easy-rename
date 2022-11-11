@@ -8,7 +8,10 @@ import useFileListStore from "../store/useFileListStore";
 
 const fileListStore = useFileListStore();
 
-// 
+
+
+
+// 监听文件拖曳到列表区域
 const handleDrop = (e: DragEvent) => {
   e.preventDefault();
   e.stopPropagation();
@@ -34,6 +37,7 @@ const handleContextmenu = (e: MouseEvent) => {
 const handleSelectionChange = (val: IFileListItem[]) => {
   fileListStore.setSelectionFiles(val)
 }
+
 </script>
 
 <template>
@@ -47,6 +51,7 @@ const handleSelectionChange = (val: IFileListItem[]) => {
       border
       stripe
       size="small"
+      :ref="fileListStore.setMultipleTableRef"
       :data="fileListStore.filesList"
       class="easy-rename-file-list-table"
       @selection-change="handleSelectionChange"
