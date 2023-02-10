@@ -8,9 +8,6 @@ import useFileListStore from "../store/useFileListStore";
 
 const fileListStore = useFileListStore();
 
-
-
-
 // 监听文件拖曳到列表区域
 const handleDrop = (e: DragEvent) => {
   e.preventDefault();
@@ -57,17 +54,17 @@ const handleSelectionChange = (val: IFileListItem[]) => {
       @selection-change="handleSelectionChange"
     >
       <el-table-column type="selection" align="center" />
-      <el-table-column type="index" label="序号" width="80" align="center" />
-      <el-table-column prop="name" label="文件名" />
-      <el-table-column prop="preview" label="预览">
+      <el-table-column show-overflow-tooltip type="index" label="序号" width="50" align="center" />
+      <el-table-column show-overflow-tooltip prop="name" label="文件名" />
+      <el-table-column show-overflow-tooltip prop="preview" label="预览">
         <template #default="scope">
           <span>{{
             (scope.row.previewName ?? "") + (scope.row.previewExtension ?? "")
           }}</span>
         </template>
       </el-table-column>
-      <el-table-column prop="extension" label="扩展名" />
-      <el-table-column prop="lastModifiedDate" label="修改日期">
+      <el-table-column show-overflow-tooltip prop="extension" label="扩展名" width="60" />
+      <el-table-column show-overflow-tooltip prop="lastModifiedDate" label="修改日期">
         <template #default="scope">
           <span>{{
             dayjs(scope.row.lastModified).format("YYYY-MM-DD HH:mm")
@@ -75,13 +72,13 @@ const handleSelectionChange = (val: IFileListItem[]) => {
         </template>
       </el-table-column>
 
-      <el-table-column prop="channelPath" label="路径">
+      <el-table-column show-overflow-tooltip prop="channelPath" label="路径">
         <template #default="scope">
           <span>{{ scope.row.channelPath }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column prop="size" label="大小" align="right">
+      <el-table-column show-overflow-tooltip prop="size" label="大小" align="right">
         <template #default="scope">
           <span>{{
             scope.row.fileType === EFileType.FILE
@@ -90,8 +87,8 @@ const handleSelectionChange = (val: IFileListItem[]) => {
           }}</span>
         </template>
       </el-table-column>
-      <el-table-column prop="fileType" label="识别类型" />
-      <el-table-column prop="result" label="结果">
+      <el-table-column show-overflow-tooltip prop="fileType" label="识别类型" width="60" />
+      <el-table-column prop="result" label="结果" width="60">
         <template #default="scope">
           <el-tag v-if="scope.row.result === true" type="success">成功</el-tag>
           <el-tag v-else-if="scope.row.result === false" type="danger">失败</el-tag>
