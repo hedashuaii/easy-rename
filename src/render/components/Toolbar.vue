@@ -20,10 +20,12 @@ const handleClearFile = () => {
 };
 
 const handleRenameFile = () => {
-  const renameFiles = fileListStore.filesList.filter(item => !!item.previewName)
+  const renameFiles = fileListStore.filesList.filter(
+    (item) => !!item.previewName
+  );
   /**
    * electron 中用 IPC 通信的时候似乎不能处理 Prxoy 代理的值，所以把它转一下
-   * 
+   *
    *  Uncaught (in promise) Error: An object could not be cloned.
    *    at o.invoke (node:electron/js2c/renderer_init:57:500)
    *    at handleRenameFile (Toolbar.vue:33:15)
@@ -37,36 +39,39 @@ const handleRenameFile = () => {
   if (!parseRenameFiles.length) return;
 
   ipcRenderer.invoke("renameFile", parseRenameFiles).then((res) => {
-    console.log('res', res)
+    console.log("res", res);
 
-    const allSuccessFlag = res.map((item: PromiseSettledResult<any>) => item.status === 'fulfilled');
+    const allSuccessFlag = res.map(
+      (item: PromiseSettledResult<any>) => item.status === "fulfilled"
+    );
 
-      
-      if (!allSuccessFlag) {
-        ElNotification({
-          title: "错误提示",
-          message: "文件重命名可能存在错误！请注意！",
-          type: "error",
-        });
+    if (!allSuccessFlag) {
+      ElNotification({
+        title: "错误提示",
+        message: "文件重命名可能存在错误！请注意！",
+        type: "error",
+      });
     }
-    
+
     // TODO: 处理文件的结果显示到列表中
     res.forEach((item: PromiseSettledResult<any>) => {
-      const file = item.status === 'fulfilled' ? item.value.file : item.reason.file
-      
+      const file =
+        item.status === "fulfilled" ? item.value.file : item.reason.file;
+
       // 找到在重命名前的下标，因为重命名数组是被上面过滤过的
-      const origin = fileListStore.filesList.find(endItme => endItme.path === file.path)!
-      
-      origin.result = item.status === 'fulfilled'
-      origin.path = file.newName
-      origin.extension = getFileExtension(file.newName)
-      origin.channelPath = getFileChannelPath(file.newName)
-      origin.fileType = getFileType(file.newName)
-      origin.name = path.basename(file.newName)
+      const origin = fileListStore.filesList.find(
+        (endItme) => endItme.path === file.path
+      )!;
+
+      origin.result = item.status === "fulfilled";
+      origin.path = file.newName;
+      origin.extension = getFileExtension(file.newName);
+      origin.channelPath = getFileChannelPath(file.newName);
+      origin.fileType = getFileType(file.newName);
+      origin.name = path.basename(file.newName);
     });
-    
-    console.log('fileListStore.filesList', fileListStore.filesList)
-    
+
+    console.log("fileListStore.filesList", fileListStore.filesList);
   });
 };
 </script>
