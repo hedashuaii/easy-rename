@@ -45,3 +45,12 @@ export interface IFileListItem extends IFileItem {
   fileType?: EFileType;
 
 }
+
+export enum ESerialOptions {
+  /** 不足位补齐 */
+  INSUFFICIENT_POSITION_TO_MAKE_UP,
+  /** 小字字母编号 */
+  SMALL_LETTER_NUMBER,
+  /** 大写字母编号 */
+  CAPITAL_LETTER_NUMBER,
+}

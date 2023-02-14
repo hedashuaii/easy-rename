@@ -19,7 +19,10 @@
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .easy-rename-action-bars {
+  :deep(.el-tab-pane) {
+    min-height: 84px;
+  }
 }
 </style>
