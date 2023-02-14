@@ -4,8 +4,8 @@ import {
   bytesToUpperCase,
   bytesToLowerCase,
   stringToCapitalize,
-} from "../../../utils/replace";
-import useFileListStore from "../../store/useFileListStore";
+} from "@/utils/replace";
+import useFileListStore from "@/render/store/useFileListStore";
 
 const fileNameForm = reactive({
   /** 文件名操作类型 */

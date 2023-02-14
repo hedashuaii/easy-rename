@@ -3,7 +3,7 @@ import dayjs from "dayjs";
 import { ipcRenderer } from "electron";
 import { filesize } from "filesize";
 import { ref } from "vue";
-import { IFileListItem, EFileType } from "../../types";
+import { IFileListItem, EFileType } from "@/types";
 import useFileListStore from "../store/useFileListStore";
 
 const fileListStore = useFileListStore();

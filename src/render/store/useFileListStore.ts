@@ -1,8 +1,8 @@
 import { Ref, ref } from "vue";
 import { defineStore } from "pinia";
 import { ElTable } from "element-plus";
-import { IFileListItem } from "../../types";
-import { getFileExtension, getFileChannelPath, getFileType } from "../../utils";
+import { IFileListItem } from "@/types";
+import { getFileExtension, getFileChannelPath, getFileType } from "@/utils";
 
 const useFileListStore = defineStore("fileList", () => {
   // 文件列表

@@ -20,7 +20,7 @@
 
 <script setup lang="ts">
 import { reactive, watch } from "vue";
-import useFileListStore from "../../store/useFileListStore";
+import useFileListStore from "@/render/store/useFileListStore";
 
 const filesListStore = useFileListStore();
 

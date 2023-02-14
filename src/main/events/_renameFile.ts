@@ -1,5 +1,5 @@
 import fs from "fs";
-import { IFileListItem } from "../../types";
+import { IFileListItem } from "@/types";
 import { IHandle } from "./types";
 
 const handleRenameFile: IHandle = async (e, files: IFileListItem[]) => {

@@ -2,7 +2,7 @@
 import { ipcRenderer } from "electron";
 import { ElNotification } from "element-plus";
 import useFileListStore from "../store/useFileListStore";
-import { getFileExtension, getFileChannelPath, getFileType } from "../../utils";
+import { getFileExtension, getFileChannelPath, getFileType } from "@/utils";
 import path from "path";
 
 const fileListStore = useFileListStore();

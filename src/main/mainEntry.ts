@@ -10,6 +10,8 @@ let mainWindow: BrowserWindow;
 
 app.whenReady().then(() => {
   const config = {
+    width: 1000,
+    // height: 600,
     webPreferences: {
       // 把 Node.js 环境集成到渲染进程中
       nodeIntegration: true,
