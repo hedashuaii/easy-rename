@@ -31,6 +31,7 @@
           </el-popover>
         </el-space>
       </el-form-item>
+      <div></div>
       <el-form-item label="起始于">
         <el-input-number
           size="small"
@@ -137,15 +138,6 @@ watch(
     strong {
       color: #409eff;
     }
-  }
-
-  :deep(.el-input-number.is-controls-right .el-input__wrapper) {
-    padding-left: 10px;
-    padding-right: 37px;
-  }
-
-  :deep(.el-input-number--small) {
-    width: 70px;
   }
 }
 </style>

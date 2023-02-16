@@ -31,17 +31,11 @@ const formValue = reactive({
 
 watch(
   () => formValue,
-  (newValue) => {
+  () => {
     const temp = filesListStore.filesList.map((item) => {
       let previewExtension = item.extension;
-      let previewName = item.name.substring(
-        0,
-        item.name.length - (item.extension?.length ?? 0)
-      );
-      previewName = previewName.replaceAll(
-        new RegExp(newValue.originText),
-        newValue.replaceText
-      );
+      let previewName = item.name.substring(0, item.name.length - (item.extension?.length ?? 0));
+      previewName = previewName.replace(new RegExp(formValue.originText, "g"), formValue.replaceText);
 
       return {
         ...item,
