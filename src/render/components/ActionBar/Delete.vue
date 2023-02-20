@@ -1,38 +1,91 @@
 <template>
 	<div :class="`${classPrefix}`">
 		<el-form inline :form="form" size="small">
-			<el-form-item label="删除文件名中的">
-				<el-input v-model="form.deleteString" />
+			<el-form-item>
+				<el-radio-group v-model="form.deleteType">
+					<el-space>
+						<el-radio label="内容删除" />
+						<el-form-item>
+							<el-space>
+								删除文件名中的
+								<el-input v-model="form.deleteString" />
+							</el-space>
+						</el-form-item>
+					</el-space>
+					<div></div>
+					<el-space>
+						<el-radio label="区间删除" />
+						<el-form-item>
+							<el-space>
+								从文件名第
+								<el-input-number :min="-255" :max="255" controls-position="right" v-model="form.startIndex" />
+								个字符开始，共删除
+								<el-input-number :min="1" :max="255" controls-position="right" v-model="form.deleteLength" />
+								个字符
+							</el-space>
+						</el-form-item>
+					</el-space>
+				</el-radio-group>
 			</el-form-item>
-			<el-form-item label="扩展删除">
-				<el-space>
-					从文件名第
-					<el-input-number controls-position="right" v-model="form.startIndex" />
-					个字符开始，共删除
-					<el-input-number controls-position="right" v-model="form.deleteLength" />
-					个字符
-				</el-space>
-			</el-form-item>
+			
 		</el-form>
 	</div>
 </template>
 
 <script lang="ts" setup>
-import { reactive } from 'vue'
+import { reactive, watch } from 'vue'
 import { ElForm, ElFormItem, ElInput, ElInputNumber, ElSpace } from "element-plus";
+import useFileListStore from '@/render/store/useFileListStore';
 
 const classPrefix = "easy-rename-action-bars-delete";
 
+const filesListStore = useFileListStore()
+
 const form = reactive({
+	deleteType: '内容删除',
 	startIndex: 1,
 	deleteLength: 1,
 	deleteString: '',
 })
 
+watch(form, () => {
+	console.log('form', form)
+	const temp = filesListStore.filesList.map(item => {
+		const previewExtension = item.extension
+		// 去除文件扩展名
+		let previewName = item.name.substring(
+			0,
+			item.name.length - (item.extension?.length ?? 0)
+		);
+
+		if(form.deleteType === '内容删除') {
+			previewName = previewName.replaceAll(form.deleteString, '')
+		} else if(form.deleteType === '区间删除') {
+			// TODO: 未完成
+			// previewName = 
+		}
+
+		return {
+			...item,
+			previewName,
+			previewExtension,
+		}
+	})
+}, {deep: true})
+
+
+
 </script>
 
 <style scoped lang="scss">
 .easy-rename-action-bars-delete {
-	
+	color: #606266;
+
+	:deep(.el-radio-group) {
+		display: block;
+		& > .el-space:last-child {
+			margin-top: 18px;
+		}
+	}
 }
 </style>

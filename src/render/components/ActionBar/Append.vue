@@ -92,4 +92,8 @@ watch(
 );
 </script>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.easy-rename-action-bars-append {
+  color: #606266;
+}
+</style>
