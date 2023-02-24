@@ -2,7 +2,6 @@
 import Toolbar from './components/Toolbar.vue'
 import ActionBar from './components/ActionBar/index.vue'
 import FileList from './components/FileList.vue'
-import DevTools from './components/DevTools.vue'
 </script>
 
 <template>
@@ -10,7 +9,6 @@ import DevTools from './components/DevTools.vue'
   <Toolbar />
   <ActionBar />
   <FileList />
-  <DevTools />
 </div>
 </template>
 
