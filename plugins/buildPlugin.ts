@@ -50,7 +50,7 @@ class BuildObj {
           allowToChangeInstallationDirectory: false,
           createDesktopShortcut: true,
           createStartMenuShortcut: true,
-          shortcutName: "EasyRenameDesktop",
+          shortcutName: "EasyRename",
         },
         publish: [{ provider: "generic", url: "http://localhost:5500/" }],
       },

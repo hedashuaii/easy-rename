@@ -1826,6 +1826,11 @@ pinia@^2.0.23:
     "@vue/devtools-api" "^6.4.4"
     vue-demi "*"
 
+pinyin-pro@^3.13.0:
+  version "3.13.0"
+  resolved "https://registry.npmmirror.com/pinyin-pro/-/pinyin-pro-3.13.0.tgz#f8866c800d7cf4be954e79dcf2f68141dffe1611"
+  integrity sha512-mwXkm0fbNdyBqWMCkpmPDT3by8nAIROpQBtJPd2zCQtYn/ED2KWe42X7gZ96R7jZz8zPzaWk5yq93BnOOucNNw==
+
 plist@^3.0.1, plist@^3.0.4:
   version "3.0.6"
   resolved "https://registry.npmmirror.com/plist/-/plist-3.0.6.tgz#7cfb68a856a7834bca6dbfe3218eb9c7740145d3"

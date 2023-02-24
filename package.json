@@ -2,13 +2,17 @@
   "name": "easy-rename",
   "private": true,
   "version": "0.0.0",
+  "author": "HeDashuai",
+  "description": "There is an application for batch renaming files.",
   "scripts": {
-    "dev": "vite",
-    "devcmd": "chcp 65001 && vite",
-    "build": "vue-tsc && vite build",
-    "preview": "vite preview"
+    "dev-vite": "vite",
+    "preview": "vite preview",
+    "dev": "chcp 65001 && vite",
+    "build": "vue-tsc && vite build"
   },
-  "dependencies": {},
+  "dependencies": {
+    "pinyin-pro": "^3.13.0"
+  },
   "devDependencies": {
     "@element-plus/icons-vue": "^2.0.10",
     "@types/filesize": "^5.0.0",
