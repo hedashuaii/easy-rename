@@ -20,6 +20,9 @@
   import Append from "./Append.vue";
   import Delete from "./Delete.vue";
   import Extend from "./Extend.vue";
+  import useFileListPreview from '@/render/hooks/useFileListPreview'
+
+  useFileListPreview()
 </script>
 
 <style lang="scss" scoped>
