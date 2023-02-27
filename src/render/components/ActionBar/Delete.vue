@@ -50,7 +50,6 @@ const form = reactive({
 })
 
 watch(form, () => {
-	console.log('form', form)
 	const temp = filesListStore.filesList.map(item => {
 		const previewExtension = item.extension
 		// 去除文件扩展名
