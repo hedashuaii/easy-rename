@@ -54,3 +54,17 @@ export enum ESerialOptions {
   /** 大写字母编号 */
   CAPITAL_LETTER_NUMBER,
 }
+
+export enum ERemoveType {
+  /** 内容删除 */
+  CONTENT = '内容删除',
+  /** 区间删除 */
+  INTERVAL = '区间删除',
+}
+
+export enum EExtendPresetScheme {
+  /** 汉字转换为拼音 */
+  ConversionOfChineseCharactersToPinyin = "汉字转换为拼音",
+  /** 汉字转换为拼音且首字母大写 */
+  ConversionOfChineseCharactersToPinyinCapitalized = "汉字转换为拼音且首字母大写",
+}

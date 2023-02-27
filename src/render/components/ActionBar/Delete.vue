@@ -4,7 +4,7 @@
 			<el-form-item>
 				<el-radio-group v-model="form.deleteType">
 					<el-space>
-						<el-radio label="内容删除" />
+						<el-radio :label="ERemoveType.CONTENT" />
 						<el-form-item>
 							<el-space>
 								删除文件名中的
@@ -14,7 +14,7 @@
 					</el-space>
 					<div></div>
 					<el-space>
-						<el-radio label="区间删除" />
+						<el-radio :label="ERemoveType.INTERVAL" />
 						<el-form-item>
 							<el-space>
 								从文件名第
@@ -34,15 +34,16 @@
 
 <script lang="ts" setup>
 import { reactive, watch } from 'vue'
-import { ElForm, ElFormItem, ElInput, ElInputNumber, ElSpace } from "element-plus";
+import { ERemoveType } from '@/types'
 import useFileListStore from '@/render/store/useFileListStore';
+import { ElForm, ElFormItem, ElInput, ElInputNumber, ElSpace } from "element-plus";
 
 const classPrefix = "easy-rename-action-bars-delete";
 
 const filesListStore = useFileListStore()
 
 const form = reactive({
-	deleteType: '内容删除',
+	deleteType: ERemoveType.CONTENT,
 	startIndex: 1,
 	deleteLength: 1,
 	deleteString: '',
@@ -58,9 +59,9 @@ watch(form, () => {
 			item.name.length - (item.extension?.length ?? 0)
 		);
 
-		if(form.deleteType === '内容删除') {
+		if(form.deleteType === ERemoveType.CONTENT) {
 			previewName = previewName.replaceAll(form.deleteString, '')
-		} else if(form.deleteType === '区间删除') {
+		} else if(form.deleteType === ERemoveType.INTERVAL) {
 			// TODO: 未完成
 			// previewName = 
 		}

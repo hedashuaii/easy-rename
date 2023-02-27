@@ -11,12 +11,7 @@
           :reserve-keyword="false"
           placeholder="请选择或输入一个序号模板"
         >
-          <el-option
-            v-for="item in presetSchemeList"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          />
+          <el-option v-for="item in presetSchemeList" :key="item" :label="item" :value="item" />
         </el-select>
       </el-form-item>
     </el-form>
@@ -24,29 +19,17 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive, watch } from "vue";
 import { pinyin } from "pinyin-pro";
+import { reactive, watch } from "vue";
+import { EExtendPresetScheme } from "@/types";
 import { ElForm, ElFormItem, ElSelect } from "element-plus";
 import useFileListStore from "@/render/store/useFileListStore";
 
 const classPrefix = "easy-rename-action-bar-extend";
 
-enum EPresetSchemeList {
-  /** 汉字转换为拼音 */
-  ConversionOfChineseCharactersToPinyin,
-  /** 汉字转换为拼音且首字母大写 */
-  ConversionOfChineseCharactersToPinyinCapitalized,
-}
-
 const presetSchemeList = [
-  {
-    label: "汉字转换为拼音",
-    value: EPresetSchemeList.ConversionOfChineseCharactersToPinyin,
-  },
-  {
-    label: "汉字转换为拼音且首字母大写",
-    value: EPresetSchemeList.ConversionOfChineseCharactersToPinyinCapitalized,
-  },
+  EExtendPresetScheme.ConversionOfChineseCharactersToPinyin,
+  EExtendPresetScheme.ConversionOfChineseCharactersToPinyinCapitalized,
 ];
 
 const form = reactive({
@@ -66,11 +49,11 @@ watch(
         item.name.length - (item.extension?.length ?? 0)
       );
 
-      switch (form.extends as unknown as EPresetSchemeList) {
-        case EPresetSchemeList.ConversionOfChineseCharactersToPinyin:
+      switch (form.extends as unknown as EExtendPresetScheme) {
+        case EExtendPresetScheme.ConversionOfChineseCharactersToPinyin:
             previewName = pinyin(previewName, { toneType: "none", type: "array" }).join('')
             break;
-        case EPresetSchemeList.ConversionOfChineseCharactersToPinyinCapitalized:
+        case EExtendPresetScheme.ConversionOfChineseCharactersToPinyinCapitalized:
             previewName = pinyin(previewName, { toneType: "none", type: "all" })
                 .map(item => {
                     if(!item.isZh) return item.origin
